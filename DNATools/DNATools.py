@@ -1,9 +1,9 @@
 
-#Tools
+# Tools
 import collections
 from structures import *
 
-#Cheking if valid DNA
+# Cheking if valid DNA
 def validateSeq(dna_seq):
     """Checking the strand for a valid DNA sequence."""
     tmpseq = dna_seq.upper()
@@ -12,7 +12,7 @@ def validateSeq(dna_seq):
             return False
         return tmpseq
 
-#Coutning nucleotides
+# Coutning nucleotides
 def countNucFrequency(seq):
     """Counting the number of nucleotides."""
     #tmpFreqDict = {"A": 0, "T": 0, "C": 0, "G": 0}
@@ -21,13 +21,13 @@ def countNucFrequency(seq):
     #return tmpFreqDict
     return dict(collections.Counter(seq))
 
-#Transcription (DNA->RNA)
+# Transcription (DNA->RNA)
 def transcription(seq):
     """Transcription from DNA to RNA by replacing Thymine with Uracil."""
     return seq.replace("T", "U")
 
-#Compliment DNA strand
-def reverse_compliment(seq):
+# Compliment DNA strand
+def compliment(seq):
     """Generate a complimentary DNA strand by swapping Adenine and Thymine and Guanine with Cytosine."""
     # return  "".join([DNA_Complement[nuc] for nuc in seq])
     mapping = str.maketrans("ATCG", "TAGC")
@@ -38,7 +38,7 @@ def at_content(seq):
     """AT content in a DNA/RNA sequence"""
     return round((seq.count("A") + seq.count("T")) / len(seq) * 100)
 
-#AT content sub sequence
+# AT content sub sequence
 def at_content_subsec(seq, k=20):
     """AT content in a DNA or RNA sub-sequence length k. k=5(default)"""
     res = []
@@ -47,12 +47,12 @@ def at_content_subsec(seq, k=20):
         res.append(at_content(subseq))
     return res
 
-#CG content in a DNA or RNA sequence
+# CG content in a DNA or RNA sequence
 def cg_content(seq):
     """GC content in a DNA/RNA sequence"""
     return round((seq.count("C") + seq.count("G")) / len(seq) * 100)
 
-#CG content sub sequence
+# CG content sub sequence
 def cg_content_subsec(seq, k=20):
     """CG content in a DNA or RNA sub-sequence length k. k=5(default)"""
     res = []
@@ -61,10 +61,20 @@ def cg_content_subsec(seq, k=20):
         res.append(cg_content(subseq))
     return res
 
-#Translation of DNA into amino acid
+# Translation of DNA into amino acid
 def translate_seq(seq, init_pos=0):
     """Translates a DNA sequence into an amino acid sequence"""
     return [DNA_Codons[seq[pos:pos + 3]] for pos in range(init_pos, len(seq) - 2, 3)]
 
-
+# Generating the six reading frames of DNA sequences, including the reverse complement
+def gen_reading_frames(seq):
+    """Generating the six reading frames of DNA sequences, including the reverse complement"""
+    frames = []
+    frames.append(translate_seq(seq, 0))
+    frames.append(translate_seq(seq, 1))
+    frames.append(translate_seq(seq, 2))
+    frames.append(translate_seq(compliment(seq), 0))
+    frames.append(translate_seq(compliment(seq), 1))
+    frames.append(translate_seq(compliment(seq), 2))
+    return frames
 

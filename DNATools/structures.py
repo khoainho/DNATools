@@ -1,5 +1,5 @@
 
-#list of Nucleotides
+# List of Nucleotides
 Nucleotides = ("A", "T", "C", "G")
 DNA_Complement = {"A": "T", "T": "A", "C": "G", "G": "C",}
 
