@@ -1,9 +1,9 @@
-from bio_structs import *
+from structures import *
 from collections import Counter
 import random
 
 
-class bio_seq:
+class functions:
     """DNA sequence class. Defalt value: ATCG, DNA, No label"""
 
     def __init__(self, seq="ATCG", seq_type="DNA", label='No Label'):
