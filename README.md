@@ -1,4 +1,4 @@
-# DNATools
+# DNA_Tools
 
 This is a DNA tool that can help you with the following:
 
