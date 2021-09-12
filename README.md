@@ -1,6 +1,6 @@
 # DNATools
 
-This is a DNA tools that can help you with the following:
+This is a DNA tool that can help you with the following:
 
 1. Validate a DNA strand
 2. Generate a compliemtary DNA strand 
